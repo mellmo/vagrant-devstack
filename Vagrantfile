@@ -67,7 +67,10 @@ Vagrant.configure("2") do |config|
    config.vm.provision "shell", inline: <<-SHELL
      apt-get update
      apt-get -y upgrade 
-     apt-get -y dist-upgrade 
-  #   apt-get install -y apache2
+     apt-get -y dist-upgrade
+     # adduser stack
+     # tee <<<"stack ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
+     # su - stack
+
    SHELL
 end
