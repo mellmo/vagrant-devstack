@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
   config.vm.box = "maxx/ubuntu16"
+  config.env.enable # Enable vagrant-env(.env)
 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
@@ -48,7 +49,7 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "4096"
+     vb.memory = ENV["VM_MEMORY"]
    end
   #
   # View the documentation for the provider you are using for more
@@ -66,8 +67,11 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", inline: <<-SHELL
      apt-get update
-     apt-get -y upgrade 
-     apt-get -y dist-upgrade 
-  #   apt-get install -y apache2
+     apt-get -y upgrade
+     apt-get -y dist-upgrade
+     # adduser stack
+     # tee <<<"stack ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
+     # su - stack
+
    SHELL
 end
