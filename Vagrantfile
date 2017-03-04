@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
-     vb.memory = "4096"
+     vb.memory = ENV["VM_MEMORY"]
    end
   #
   # View the documentation for the provider you are using for more
@@ -66,7 +66,7 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", inline: <<-SHELL
      apt-get update
-     apt-get -y upgrade 
+     apt-get -y upgrade
      apt-get -y dist-upgrade
      # adduser stack
      # tee <<<"stack ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
