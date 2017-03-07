@@ -69,7 +69,9 @@ Vagrant.configure("2") do |config|
      apt-get update
      apt-get -y upgrade
      apt-get -y dist-upgrade
-     # adduser stack
+     apt-get -y autoremove
+     adduser -disabled-password --gecos "" stack
+     echo stack:ENV["DEVSTACK_USER_PASSWORD"] | chpasswd 
      # tee <<<"stack ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
      # su - stack
 
