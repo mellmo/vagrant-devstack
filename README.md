@@ -12,6 +12,6 @@ create an .env file and fill it with the following environment variables:
  - ADMIN_PASSWORD=VALUE
 
 # Install
-After .env file setup, run `vagrant up` and be patient :) (it took ~5000s on a i5, 16go, ssd etc. the vm had minimum config required: 2cpus and $go of ram)
+After .env file setup, run `vagrant up` and be patient :) (it took ~5000s on a i5, 16go, ssd etc. the vm had minimum config required: 2cpus and 4go of ram)
 
 In case you're running vagrant on windows with hyper-v, remember to run the command in a console with admin rights
