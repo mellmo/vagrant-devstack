@@ -50,6 +50,7 @@ Vagrant.configure("2") do |config|
   #
   #   # Customize the amount of memory on the VM:
      vb.memory = ENV["VM_MEMORY"]
+     vb.cpus = ENV["VM_CPU_COUNT"]
    end
   #
   # View the documentation for the provider you are using for more
