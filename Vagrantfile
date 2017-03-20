@@ -65,13 +65,19 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
-   config.vm.provision "shell", inline: <<-SHELL
-     apt-get update
-     apt-get -y upgrade
-     apt-get -y dist-upgrade
-     # adduser stack
-     # tee <<<"stack ALL=(ALL) NOPASSWD: ALL" /etc/sudoers
-     # su - stack
-
+   config.vm.provision "shell", privileged: false, inline: <<-SHELL
+      apt-get update
+      apt-get -y upgrade
+      apt-get -y dist-upgrade
+      apt-get -y autoremove
+      cd /home/vagrant/
+      git clone https://git.openstack.org/openstack-dev/devstack devstack
+      cd devstack
+      touch local.conf
+      echo "[[local|localrc]]" >> local.conf
+      echo "DATABASE_PASSWORD=ENV["ADMIN_PASSWORD"]" >> local.conf
+      echo "RABBIT_PASSWORD=ENV["ADMIN_PASSWORD"]" >> local.conf
+      echo "SERVICE_PASSWORD=ENV["ADMIN_PASSWORD"]" >> local.conf
+      ./stack.sh
    SHELL
 end
