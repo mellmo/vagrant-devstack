@@ -67,10 +67,10 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", privileged: false, inline: <<-SHELL
-      apt-get update
-      apt-get -y upgrade
-      apt-get -y dist-upgrade
-      apt-get -y autoremove
+      # apt-get update
+      # apt-get -y upgrade
+      # apt-get -y dist-upgrade
+      # apt-get -y autoremove
       cd /home/vagrant/
       git clone https://git.openstack.org/openstack-dev/devstack devstack
       cd devstack
