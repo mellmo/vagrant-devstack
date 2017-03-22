@@ -12,9 +12,15 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://atlas.hashicorp.com/search.
-  config.vm.box = "maxx/ubuntu16"
-  config.env.enable # Enable vagrant-env(.env)
+  if Vagrant::Util::Platform::windows? then
+	config.vm.box = "maxx/ubuntu16"
+  else
+	config.vm.box = "ubuntu/trusty64"
+  end 
 
+ config.env.enable # Enable vagrant-env(.env)
+
+ 
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -44,14 +50,19 @@ Vagrant.configure("2") do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-   config.vm.provider "hyperv" do |vb|
+   config.vm.provider "hyperv" do |hv|
   #   # Display the VirtualBox GUI when booting the machine
   #   vb.gui = true
   #
   #   # Customize the amount of memory on the VM:
+     hv.memory = ENV["VM_MEMORY"]
+     hv.cpus = ENV["VM_CPU_COUNT"]
+   end
+
+   config.vm.provider "virtualbox" do |vb|
      vb.memory = ENV["VM_MEMORY"]
      vb.cpus = ENV["VM_CPU_COUNT"]
-   end
+   end  
   #
   # View the documentation for the provider you are using for more
   # information on available options.
@@ -67,10 +78,10 @@ Vagrant.configure("2") do |config|
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
   # documentation for more information about their specific syntax and use.
    config.vm.provision "shell", privileged: false, inline: <<-SHELL
-      # apt-get update
-      # apt-get -y upgrade
-      # apt-get -y dist-upgrade
-      # apt-get -y autoremove
+      sudo apt-get update
+      sudo apt-get -y upgrade
+      sudo apt-get -y dist-upgrade
+      sudo apt-get -y autoremove
       cd /home/vagrant/
       git clone https://git.openstack.org/openstack-dev/devstack devstack
       cd devstack
