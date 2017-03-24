@@ -4,7 +4,7 @@ Ubuntu box with a devstack shell provisioning script
 # Requirements 
  - Vagrant env: 
  	either run `setup.bat` 
-	or the following command `vagrant plugin install vagrant-env:`
+	or the following command `vagrant plugin install vagrant-env`
 
 # Environment variables:
 create an .env file and fill it with the following environment variables:
