@@ -11,13 +11,13 @@ The hypervisor target is hyperV, not tested under virtualbox but the script supp
 # Environment variables:
 create an .env file (or edit in case you've run the setup script) and fill it with the following environment variables:
 
-	`touch .env`
+	touch .env
 
-	`echo VM_MEMORY=VALUE >> .env`
-	`echo VM_CPU_COUNT=VALUE >> .env`
-	`echo ADMIN_PASSWORD=VALUE >> .env`
+	echo VM_MEMORY=VALUE >> .env
+	echo VM_CPU_COUNT=VALUE >> .env
+	echo ADMIN_PASSWORD=VALUE >> .env
 
-	`vim .env`
+	vim .env
 
  - VM_MEMORY=VALUE # min 4096
  - VM_CPU_COUNT=VALUE # min 2
