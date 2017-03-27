@@ -5,11 +5,11 @@ The hypervisor target is hyperV, not tested under virtualbox but the script supp
 
 # Requirements 
  - Vagrant env: 
- 	either run `setup.bat` 
+ 	either run setup script file
 	or the following command `vagrant plugin install vagrant-env`
 
 # Environment variables:
-create an .env file (or edit in case you've run the setup.bat) and fill it with the following environment variables:
+create an .env file (or edit in case you've run the setup script) and fill it with the following environment variables:
 
 	`touch .env`
 
